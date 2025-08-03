@@ -6,7 +6,8 @@ const options = ['FAQ', 'INFO', 'CONTACTO', 'PROYECTOS']
 export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string, onSelect: (option: string) => void }) => {
   const [rotation, setRotation] = useState(0)
   const circleRef = useRef<HTMLDivElement>(null)
-  const touchStartRef = useRef<number>(0)
+  const touchStartRef = useRef<{ y: number; rotation: number }>({ y: 0, rotation: 0 })
+  const isDraggingRef = useRef(false)
 
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault()
@@ -16,52 +17,77 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
     setRotation(snappedRotation % 360)
   }, [rotation])
 
-  const handleTouchStart = (e: TouchEvent) => {
-    touchStartRef.current = e.touches[0].clientY
-  }
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    e.preventDefault() // Prevent page scrolling
+    touchStartRef.current = {
+      y: e.touches[0].clientY,
+      rotation: rotation
+    }
+    isDraggingRef.current = true
+  }, [rotation])
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
-    e.preventDefault()
-    const touchDelta = touchStartRef.current - e.touches[0].clientY
-    const sensitivity = 1
-    const newRotation = rotation + touchDelta * sensitivity
-    const snappedRotation = Math.round(newRotation / 90) * 90
+    if (!isDraggingRef.current) return
+    e.preventDefault() // Prevent page scrolling
+    
+    const touchDelta = touchStartRef.current.y - e.touches[0].clientY
+    const sensitivity = 0.8 // Reduced sensitivity for better control
+    const newRotation = touchStartRef.current.rotation + touchDelta * sensitivity
+    
+    // Apply rotation without snapping during drag
+    setRotation(newRotation % 360)
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    if (!isDraggingRef.current) return
+    isDraggingRef.current = false
+    
+    // Snap to nearest 90-degree position on touch end
+    const snappedRotation = Math.round(rotation / 90) * 90
     setRotation(snappedRotation % 360)
-    touchStartRef.current = e.touches[0].clientY
   }, [rotation])
 
   useEffect(() => {
     const circle = circleRef.current
     if (circle) {
+      // Desktop wheel events
       circle.addEventListener('wheel', handleWheel, { passive: false })
-      circle.addEventListener('touchstart', handleTouchStart, { passive: true })
+      
+      // Mobile touch events
+      circle.addEventListener('touchstart', handleTouchStart, { passive: false })
       circle.addEventListener('touchmove', handleTouchMove, { passive: false })
+      circle.addEventListener('touchend', handleTouchEnd, { passive: true })
+      circle.addEventListener('touchcancel', handleTouchEnd, { passive: true })
     }
+    
     return () => {
       if (circle) {
         circle.removeEventListener('wheel', handleWheel)
         circle.removeEventListener('touchstart', handleTouchStart)
         circle.removeEventListener('touchmove', handleTouchMove)
+        circle.removeEventListener('touchend', handleTouchEnd)
+        circle.removeEventListener('touchcancel', handleTouchEnd)
       }
     }
-  }, [rotation, handleWheel, handleTouchMove])
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd])
 
   return (
     <motion.div
       ref={circleRef}
-      className="relative md:left-72 w-72 md:w-96 h-72 md:h-96 cursor-pointer touch-none"
+      className="relative w-72 md:w-96 h-72 md:h-96 cursor-pointer touch-none select-none"
       style={{ rotate: rotation }}
       animate={{ rotate: rotation }}
-      transition={{ type: 'spring', stiffness: 80, damping: 20 }} // Smooth spring effect
+      transition={{ 
+        type: 'spring', 
+        stiffness: isDraggingRef.current ? 300 : 80, 
+        damping: isDraggingRef.current ? 30 : 20 
+      }}
     >
       {options.map((option, index) => {
         const angle = index * 90
         const isSelected = option === selectedOption
 
-        // Calculate the rotation of the button based on its angle around the circle
         const buttonRotation = angle - rotation
-
-        // Ensure the text remains upright by calculating the necessary counter-rotation
         let textRotation = -angle
         if (buttonRotation % 360 === 90 || buttonRotation % 360 === -270) {
           textRotation += 90
@@ -81,8 +107,8 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
               transform: `translate(-50%, -50%)`,
             }}
             onClick={() => onSelect(option)}
-            animate={{ fontSize: isSelected ? '1.35rem' : '1.25rem' }} // Smooth font size transition
-            transition={{ duration: 0.3 }} // Duration for text size transition
+            animate={{ fontSize: isSelected ? '1.35rem' : '1.25rem' }}
+            transition={{ duration: 0.3 }}
           >
             <span className='w-full'
               style={{

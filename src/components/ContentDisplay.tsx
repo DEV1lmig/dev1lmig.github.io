@@ -26,9 +26,12 @@ export const ContentDisplay = ({ selectedOption }: { selectedOption: string }) =
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -50 }}
         transition={{ duration: 0.5 }}
+        className="h-full"
       >
-        <h2 className="pt-20 text-4xl font-bold mb-8">{selectedOption}</h2>
-        {content}
+        <h2 className="text-2xl font-bold mb-6 border-b border-gray-700 pb-4">{selectedOption}</h2>
+        <div className="overflow-y-auto pb-4">
+          {content}
+        </div>
       </motion.div>
     )
 }
