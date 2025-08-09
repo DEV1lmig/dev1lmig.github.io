@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-
-const options = ['FAQ', 'INFO', 'CONTACTO', 'PROYECTOS']
+import { useTranslation } from 'react-i18next'
 
 export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string, onSelect: (option: string) => void }) => {
+  const { t } = useTranslation()
+  const options = [t('nav.faq'), t('nav.info'), t('nav.contact'), t('nav.projects')]
   const [rotation, setRotation] = useState(0)
   const circleRef = useRef<HTMLDivElement>(null)
   const touchStartRef = useRef<{ y: number; rotation: number }>({ y: 0, rotation: 0 })
@@ -74,7 +75,7 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
   return (
     <motion.div
       ref={circleRef}
-      className="relative w-72 md:w-96 h-72 md:h-96 cursor-pointer touch-none select-none"
+      className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 cursor-pointer touch-none select-none"
       style={{ rotate: rotation }}
       animate={{ rotate: rotation }}
       transition={{ 
@@ -100,7 +101,7 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
         return (
           <motion.button
             key={option}
-            className={`border-solid absolute w-full z-10 text-lg font-bold ${isSelected ? 'text-xl' : ''}`}
+            className={`border-solid absolute w-full z-10 font-bold text-sm sm:text-base md:text-lg lg:text-xl ${isSelected ? 'scale-110' : ''}`}
             style={{
               top: angle === 0 ? '0%' : angle === 180 ? '100%' : '50%',
               left: angle === 90 ? '100%' : angle === 270 ? '0%' : '50%',
@@ -110,9 +111,9 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
             animate={{ fontSize: isSelected ? '1.35rem' : '1.25rem' }}
             transition={{ duration: 0.3 }}
           >
-            <span className='w-full'
+            <span 
+              className='w-full inline-block leading-tight'
               style={{
-                display: 'inline-block',
                 transform: `rotate(${textRotation}deg)`,
               }}
             >
@@ -128,9 +129,10 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
           r="50"
           fill="none"
           stroke="white"
-          strokeWidth="1.4"
+          strokeWidth="0.8"
           strokeDasharray="40 40"
           strokeDashoffset="63"
+          className="sm:stroke-[1] md:stroke-[1.2] lg:stroke-[1.4]"
         />
       </svg>
     </motion.div>

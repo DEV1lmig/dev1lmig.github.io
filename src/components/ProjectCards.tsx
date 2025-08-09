@@ -2,14 +2,18 @@ import { motion } from 'framer-motion'
 import Cover from '@/assets/Cover.png'
 import Thumbnail from '@/assets/Thumbnail.jpg'
 import SpellyCover from '@/assets/spelly-cover.png'
+import { useTranslation } from 'react-i18next'
 
-const projects = [
-  { id: 1, title: 'Belkys Manga TC LP', image: `${Thumbnail}`, url: 'https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1' },
-  { id: 2, title: 'Mundo Peludo', image: `${Cover}`, url: 'https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1' },
-  { id: 3, title: 'Spelly', image: `${SpellyCover}`, url: 'https://spelly-kit.vercel.app/'}
-]
+const imageMap: Record<string, string> = {
+  'Belkys Manga TC LP': Thumbnail,
+  'Mundo Peludo': Cover,
+  'Spelly': SpellyCover,
+}
 
 export const ProjectCards = () => {
+  const { t } = useTranslation()
+  const projects = t('projects.items', { returnObjects: true }) as Array<{ id: number; title: string; url: string }>
+
   return (
     <div className="grid grid-cols-2 gap-4">
       {projects.map((project) => (
@@ -21,7 +25,7 @@ export const ProjectCards = () => {
           className="bg-gray-800 rounded-lg overflow-hidden"
           whileHover={{ scale: 1.05 }}
         >
-          <img src={project.image} alt={project.title} className="w-full h-40 object-cover" />
+          <img src={imageMap[project.title] || Thumbnail} alt={project.title} className="w-full h-40 object-cover" />
           <div className="p-4">
             <h3 className="text-xl font-bold">{project.title}</h3>
           </div>

@@ -1,0 +1,70 @@
+{
+  "name": "Miguel Quiroz",
+  "welcomeWords": ["Welcome", "Bienvenido"],
+  "profile.blurb": "My name is Miguel Quiroz, a Venezuelan front-end developer passionate about creating intuitive and minimalist UIs. Experienced in building complete interfaces, web3 components, AI applications, and e-commerce platforms. Committed to continuous learning and exploring new technologies.",
+
+  "nav.faq": "FAQ",
+  "nav.info": "INFO",
+  "nav.contact": "CONTACT",
+  "nav.projects": "PROJECTS",
+
+  "mobile.hint": "Tap the menu ☰ to navigate",
+  "mobile.navTitle": "Navigation",
+  "mobile.close": "Close",
+
+  "content.title": "{{section}}",
+
+  "faq.title": "Frequently Asked Questions",
+  "faq.items": [
+    {
+      "q": "What is your experience in web development?",
+      "a": "I have over 2 years of web development experience, working with technologies like React, Svelte, Next.js, and SQL databases."
+    },
+    {
+      "q": "How do you handle deadlines and communication during a project?",
+      "a": "Communication is key in my projects. I use project management tools to keep clients updated. I set clear milestones and communicate regularly via weekly meetings and email updates."
+    },
+    {
+      "q": "Can you work on long-term projects or do you prefer short contracts?",
+      "a": "I'm flexible and can adapt to both long-term projects and short contracts. My goal is to provide the best value regardless of the project's length."
+    }
+  ],
+
+  "info.experience.title": "Work Experience",
+  "info.experience.items": [
+    {
+      "role": "Frontend Dev",
+      "period": "2023 - 2024",
+      "desc": "Frontend dev at a web3 startup building the dashboard (unreleased product)"
+    },
+    {
+      "role": "UI-UX Designer",
+      "period": "2020 - Present",
+      "desc": "Designer in various freelance projects, from apps to websites"
+    }
+  ],
+
+  "info.education.title": "Education",
+  "info.education.items": [
+    {
+      "title": "Computer Engineering Student",
+      "period": "Rafael Belloso Chacin, 2020 - Present"
+    }
+  ],
+
+  "info.skills.title": "Skills",
+  "info.skills.items": ["React", "Node.js", "TypeScript", "SQL", "PocketBase", "Supabase", "Svelte"],
+
+  "contact.title": "Let's connect!",
+  "contact.email": "quirozmiguel2002@gmail.com",
+  "contact.social": [
+    { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
+    { "name": "Instagram", "url": "https://instagram.com/devilmig" }
+  ],
+
+  "projects.items": [
+    { "id": 1, "title": "Belkys Manga TC LP", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1" },
+    { "id": 2, "title": "Mundo Peludo", "url": "https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1" },
+    { "id": 3, "title": "Spelly", "url": "https://spelly-kit.vercel.app/" }
+  ]
+}

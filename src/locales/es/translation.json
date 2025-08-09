@@ -1,0 +1,70 @@
+{
+  "name": "Miguel Quiroz",
+  "welcomeWords": ["Welcome", "Bienvenido"],
+  "profile.blurb": "Mi nombre es Miguel Quiroz, desarrollador front-end venezolano apasionado por crear UIs intuitivas y minimalistas. Con experiencia en el diseño de interfaces completas, componentes web3, aplicaciones AI, y plataformas de comercio electrónico. Comprometido con el aprendizaje continuo y la exploración de nuevas tecnologías.",
+
+  "nav.faq": "FAQ",
+  "nav.info": "INFO",
+  "nav.contact": "CONTACTO",
+  "nav.projects": "PROYECTOS",
+
+  "mobile.hint": "Toca el menú ☰ para navegar",
+  "mobile.navTitle": "Navegación",
+  "mobile.close": "Cerrar",
+
+  "content.title": "{{section}}",
+
+  "faq.title": "Preguntas Frecuentes",
+  "faq.items": [
+    {
+      "q": "¿Cuál es tu experiencia en desarrollo web?",
+      "a": "Tengo más de 2 años de experiencia en desarrollo web, trabajando con tecnologías como React, Svelte, Next.js, y bases de datos SQL."
+    },
+    {
+      "q": "¿Cómo manejas los plazos y la comunicación durante un proyecto?",
+      "a": "La comunicación es clave en mis proyectos. Utilizo herramientas de gestión para mantener a los clientes actualizados. Establezco hitos claros y me comunico regularmente mediante reuniones semanales y actualizaciones por correo."
+    },
+    {
+      "q": "¿Puedes trabajar en proyectos a largo plazo o prefieres contratos cortos?",
+      "a": "Soy flexible y puedo adaptarme tanto a proyectos a largo plazo como a contratos cortos. Mi objetivo es brindar el mejor valor posible, independientemente de la duración."
+    }
+  ],
+
+  "info.experience.title": "Experiencia laboral",
+  "info.experience.items": [
+    {
+      "role": "Frontend Dev",
+      "period": "2023 - 2024",
+      "desc": "Frontend dev en una start up web3 desarrollando el dashboard (producto no lanzado)"
+    },
+    {
+      "role": "Diseñador de UI-UX",
+      "period": "2020 - Presente",
+      "desc": "Diseñador en diferentes proyectos como freelancer, desde apps hasta webs"
+    }
+  ],
+
+  "info.education.title": "Educación",
+  "info.education.items": [
+    {
+      "title": "Estudiante de Ingeniería Informática",
+      "period": "Rafael Belloso Chacín, 2020 - Presente"
+    }
+  ],
+
+  "info.skills.title": "Habilidades",
+  "info.skills.items": ["React", "Node.js", "TypeScript", "SQL", "PocketBase", "Supabase", "Svelte"],
+
+  "contact.title": "¡Conectemos!",
+  "contact.email": "quirozmiguel2002@gmail.com",
+  "contact.social": [
+    { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
+    { "name": "Instagram", "url": "https://instagram.com/devilmig" }
+  ],
+
+  "projects.items": [
+    { "id": 1, "title": "Belkys Manga TC LP", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1" },
+    { "id": 2, "title": "Mundo Peludo", "url": "https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1" },
+    { "id": 3, "title": "Spelly", "url": "https://spelly-kit.vercel.app/" }
+  ]
+}

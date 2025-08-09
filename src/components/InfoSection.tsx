@@ -1,8 +1,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Briefcase, GraduationCap, Award, Code } from 'lucide-react'
+import { Briefcase, GraduationCap, Code } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export const InfoSection = () => {
+  const { t } = useTranslation()
+  const experienceItems = t('info.experience.items', { returnObjects: true }) as Array<{ role: string; period: string; desc: string }>
+  const educationItems = t('info.education.items', { returnObjects: true }) as Array<{ title: string; period: string }>
+  const skills = t('info.skills.items', { returnObjects: true }) as string[]
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -13,42 +19,41 @@ export const InfoSection = () => {
       <section className="mb-6">
         <h3 className="text-xl font-semibold mb-3 flex items-center">
           <Briefcase className="mr-2" size={20} />
-          Experiencia laboral
+          {t('info.experience.title')}
         </h3>
         <ul className="space-y-4">
-          <li>
-            <h4 className="font-medium">Frontend Dev</h4>
-            <p className="text-gray-400">2023 - 2024</p>
-            <p className="text-gray-300">Frontend dev en una start up web3 desarrollando el dashboard (unreleased product)</p>
-          </li>
-          <li>
-            <h4 className="font-medium">Diseñador de UI-UX </h4>
-            <p className="text-gray-400">2020 - Presennte</p>
-            <p className="text-gray-300">Diseñador en diferentes proyectos como freelancer, desde apps hasta webs</p>
-          </li>
+          {experienceItems.map((item, idx) => (
+            <li key={idx}>
+              <h4 className="font-medium">{item.role}</h4>
+              <p className="text-gray-400">{item.period}</p>
+              <p className="text-gray-300">{item.desc}</p>
+            </li>
+          ))}
         </ul>
       </section>
 
       <section className="mb-6">
         <h3 className="text-xl font-semibold mb-3 flex items-center">
           <GraduationCap className="mr-2" size={20} />
-          Educación
+          {t('info.education.title')}
         </h3>
         <ul className="space-y-4">
-          <li>
-            <h4 className="font-medium">Estudiante en ingenieria informatica</h4>
-            <p className="text-gray-400">Rafael Belloso Chacin, 2020 - Presente</p>
-          </li>
+          {educationItems.map((item, idx) => (
+            <li key={idx}>
+              <h4 className="font-medium">{item.title}</h4>
+              <p className="text-gray-400">{item.period}</p>
+            </li>
+          ))}
         </ul>
       </section>
 
       <section className="mb-6">
         <h3 className="text-xl font-semibold mb-3 flex items-center">
           <Code className="mr-2" size={20} />
-          Habilidades
+          {t('info.skills.title')}
         </h3>
         <ul className="flex flex-wrap gap-2">
-          {['React', 'Node.js', 'TypeScript', 'SQL', 'PocketBase', 'Supabase', 'Svelte'].map((skill) => (
+          {skills.map((skill) => (
             <li key={skill} className="bg-gray-700 px-3 py-1 rounded-full text-sm">
               {skill}
             </li>

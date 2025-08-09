@@ -1,28 +1,14 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 type FAQItem = {
   question: string
   answer: string
 }
 
-const faqItems: FAQItem[] = [
-  {
-    question: "¿Cuál es tu experiencia en desarrollo web?",
-    answer: "Tengo más de 2 años de experiencia en desarrollo web, trabajando con tecnologías como React, Svelte, nextjs, y bases de datos SQL."
-  },
-  {
-    question: "¿Cómo manejas los plazos y la comunicación durante un proyecto?",
-    answer: "La comunicación es clave en mis proyectos. Utilizo herramientas de gestión de proyectos para mantener a los clientes actualizados sobre el progreso. Establezco hitos claros y me comunico regularmente a través de reuniones semanales y actualizaciones por correo electrónico."
-  },
-  {
-    question: "¿Puedes trabajar en proyectos a largo plazo o prefieres contratos cortos?",
-    answer: "Soy flexible y puedo adaptarme tanto a proyectos a largo plazo como a contratos cortos. Mi objetivo es proporcionar el mejor valor posible, independientemente de la duración del proyecto."
-  },
-]
-
-const FAQItem = ({ item }: { item: FAQItem }) => {
+const FAQItemRow = ({ item }: { item: FAQItem }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -52,6 +38,10 @@ const FAQItem = ({ item }: { item: FAQItem }) => {
 }
 
 export const FAQSection = () => {
+  const { t } = useTranslation()
+  const items = t('faq.items', { returnObjects: true }) as Array<{ q: string; a: string }>
+  const faqItems: FAQItem[] = items.map((it) => ({ question: it.q, answer: it.a }))
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -59,10 +49,10 @@ export const FAQSection = () => {
       transition={{ duration: 0.5 }}
       className="bg-gray-800 text-white p-10 rounded-lg shadow-lg w-auto mx-auto"
     >
-      <h3 className="text-2xl font-bold mb-6">Preguntas Frecuentes</h3>
+      <h3 className="text-2xl font-bold mb-6">{t('faq.title')}</h3>
       <div className="space-y-2">
         {faqItems.map((item, index) => (
-          <FAQItem key={index} item={item} />
+          <FAQItemRow key={index} item={item} />
         ))}
       </div>
     </motion.div>

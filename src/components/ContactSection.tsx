@@ -1,12 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Github, Instagram, Mail } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export const ContactSection = () => {
-  const socialLinks = [
-    { name: 'GitHub', icon: Github, url: 'https://github.com/DEV1lmig' },
-    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/devilmig' },
-  ]
+  const { t } = useTranslation()
+  const socialLinks = t('contact.social', { returnObjects: true }) as Array<{ name: string; url: string }>
 
   return (
     <motion.div
@@ -15,7 +14,7 @@ export const ContactSection = () => {
       transition={{ duration: 0.5 }}
       className="bg-gray-800 text-white p-10 rounded-lg shadow-lg w-auto mx-auto"
     >
-      <h3 className="text-2xl font-bold mb-6">¡Conectemos!</h3>
+      <h3 className="text-2xl font-bold mb-6">{t('contact.title')}</h3>
 
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {socialLinks.map((link) => (
@@ -27,18 +26,24 @@ export const ContactSection = () => {
             className="flex items-center justify-center w-12 h-12 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300"
             aria-label={link.name}
           >
-            <link.icon size={24} />
+            {link.name.toLowerCase() === 'github' ? (
+              <Github size={24} />
+            ) : link.name.toLowerCase() === 'instagram' ? (
+              <Instagram size={24} />
+            ) : (
+              <Github size={24} />
+            )}
           </a>
         ))}
       </div>
 
       <div className="text-center">
         <a
-          href="mailto:your.email@example.com"
+          href={`mailto:${t('contact.email')}`}
           className="inline-flex items-center text-lg hover:text-gray-300 transition-colors duration-300"
         >
           <Mail size={20} className="mr-2" />
-          quirozmiguel2002@gmail.com
+          {t('contact.email')}
         </a>
       </div>
     </motion.div>

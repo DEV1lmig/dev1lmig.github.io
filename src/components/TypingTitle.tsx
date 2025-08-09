@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
-
-const words = ['Welcome', 'Bienvenido',]
+import { useTranslation } from 'react-i18next'
 
 export const TypingTitle = () => {
+  const { t } = useTranslation()
+  const words = t('welcomeWords', { returnObjects: true }) as string[]
+
   const [index, setIndex] = useState(0)
   const [subIndex, setSubIndex] = useState(0)
   const [reverse, setReverse] = useState(false)
 
   useEffect(() => {
+    if (!words || words.length === 0) return
+
     if (subIndex === words[index].length + 1 && !reverse) {
       setReverse(true)
       return
@@ -25,11 +29,11 @@ export const TypingTitle = () => {
 
 
     return () => clearTimeout(timeout)
-  }, [subIndex, index, reverse])
+  }, [subIndex, index, reverse, words])
 
   return (
     <h2 className="min-h-10 text-4xl font-bold">
-      {`${words[index].substring(0, subIndex)}${subIndex === words[index].length ? '|' : ''}`}
+      {words && words.length > 0 ? `${words[index].substring(0, subIndex)}${subIndex === words[index].length ? '|' : ''}` : ''}
     </h2>
   )
 }
