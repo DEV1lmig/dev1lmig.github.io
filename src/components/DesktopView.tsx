@@ -92,7 +92,7 @@ export const DesktopView = ({
                     animate={{ opacity: [0.3, 0.5, 0.6] }}
                     transition={{ delay: 2 }}
                     >
-                      <MouseScrollIcon className="animate-pulse opacity-60 scale-90 md:scale-100" />
+                      <MouseScrollIcon className="text-[var(--nes-cyan)] animate-pulse opacity-60 scale-90 md:scale-100" />
                     </motion.section>
 
                     {/* Pixel arrow pointing at the circle (hidden when selectedOption) */}
@@ -132,7 +132,7 @@ export const DesktopView = ({
                     animate={{ opacity: [0.3, 0.5, 0.6] }}
                     transition={{ delay: 0.8 }}
                     >
-                    <MouseScrollIcon className=" animate-pulse opacity-30 sm:opacity-40 md:opacity-50 lg:opacity-60 scale-75 sm:scale-90 md:scale-100" />
+                    <MouseScrollIcon className="text-[var(--nes-cyan)] animate-pulse opacity-30 sm:opacity-40 md:opacity-50 lg:opacity-60 scale-75 sm:scale-90 md:scale-100" />
                     </motion.section>
                 </motion.section>
 
