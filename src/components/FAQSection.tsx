@@ -12,13 +12,13 @@ const FAQItemRow = ({ item }: { item: FAQItem }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-gray-700">
+    <div className="border-b border-[var(--nes-cyan)]/40">
       <button
         className="flex justify-between items-center w-full py-4 text-left"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <span className="font-medium">{item.question}</span>
+        <span className="font-vt text-[var(--nes-light)]">{item.question}</span>
         {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
       </button>
       <AnimatePresence>
@@ -29,7 +29,7 @@ const FAQItemRow = ({ item }: { item: FAQItem }) => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <p className="pb-4 text-gray-300">{item.answer}</p>
+            <p className="pb-4 text-[color:rgba(215,227,252,0.8)]">{item.answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -47,9 +47,9 @@ export const FAQSection = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800 text-white p-10 rounded-lg shadow-lg w-auto mx-auto"
+      className="bg-[var(--nes-black)] pixel-border text-[var(--nes-light)] p-10 rounded-lg shadow-lg w-auto mx-auto"
     >
-      <h3 className="text-2xl font-bold mb-6">{t('faq.title')}</h3>
+      <h3 className="text-2xl font-pixel mb-6 text-[var(--nes-yellow)]">{t('faq.title')}</h3>
       <div className="space-y-2">
         {faqItems.map((item, index) => (
           <FAQItemRow key={index} item={item} />

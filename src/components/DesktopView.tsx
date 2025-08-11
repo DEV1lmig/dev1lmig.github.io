@@ -5,6 +5,7 @@ import { TypingTitle } from './TypingTitle'
 import { ContentDisplay } from './ContentDisplay'
 import { MouseScrollIcon } from './MouseScrollIcon'
 import { useTranslation } from 'react-i18next'
+import { PixelArrowRight } from './PixelArrowRight'
 
 interface DesktopViewProps {
   selectedOption: string
@@ -23,13 +24,13 @@ export const DesktopView = ({
 }: DesktopViewProps) => {
   const { t } = useTranslation()
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col pt-2 sm:pt-5 md:pt-8 lg:pt-10">
+    <div className="min-h-screen bg-[var(--nes-black)] text-[var(--nes-light)] font-vt flex flex-col pt-2 sm:pt-5 md:pt-8 lg:pt-10">
       <div className="flex-grow flex flex-col justify-center items-center">
         <motion.div
           ref={containerRef}
-          className="container mx-auto bg-gray-900 rounded-2xl lg:rounded-3xl overflow-hidden relative mb-2 sm:mb-4 md:mb-6 lg:mb-8 px-2 sm:px-4 md:px-6 lg:px-8"
+          className="container mx-auto bg-[var(--pane-bg)] rounded-2xl lg:rounded-3xl overflow-hidden relative mb-2 sm:mb-4 md:mb-6 lg:mb-8 px-2 sm:px-4 md:px-6 lg:px-8 pixel-border crt"
           style={{
-            boxShadow: `0 0 20px 2px rgba(255, 255, 255, 0.08), 0 0 40px 5px rgba(255, 255, 255, 0.1)`,
+            boxShadow: `0 0 20px 2px rgba(45, 226, 230, 0.08), 0 0 40px 5px rgba(255, 58, 167, 0.1)`,
           }}
           animate={{ 
             height: selectedOption ? ['70vh', '75vh', '80vh'][Math.min(2, Math.floor(window.innerWidth / 400))] || '70vh' : 'auto',
@@ -69,10 +70,10 @@ export const DesktopView = ({
                   className="flex flex-col justify-center p-2 sm:p-4 md:p-6 lg:p-8 w-3/5 lg:w-3/5"
                 >
                   <div className='pb-6 sm:pb-10 md:pb-12 lg:pb-14'>
-                    <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">{t('name')}</h1>
+                    <h1 className="font-pixel font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight drop-shadow">{t('name')}</h1>
                     <TypingTitle/>
                   </div>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">{t('profile.blurb')}</p>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-base leading-relaxed text-[color:rgba(215,227,252,0.8)]">{t('profile.blurb')}</p>
                 </motion.section>
 
 
@@ -91,8 +92,13 @@ export const DesktopView = ({
                     animate={{ opacity: [0.3, 0.5, 0.6] }}
                     transition={{ delay: 2 }}
                     >
-                    <MouseScrollIcon className="animate-pulse opacity-30 sm:opacity-40 md:opacity-50 lg:opacity-60 scale-75 sm:scale-90 md:scale-100" />
+                      <MouseScrollIcon className="animate-pulse opacity-60 scale-90 md:scale-100" />
                     </motion.section>
+
+                    {/* Pixel arrow pointing at the circle (hidden when selectedOption) */}
+                    <div className="flex items-center justify-center mx-1 sm:mx-2">
+                      <PixelArrowRight className="text-[var(--nes-cyan)] w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9" />
+                    </div>
                   <div className="relative overflow-hidden w-24 h-48 sm:w-28 sm:h-56 md:w-32 md:h-64 lg:w-40 lg:h-80 xl:w-48 xl:h-96">
                     <div className="translate-x-1/2">
                       <CircleNav selectedOption={selectedOption} onSelect={onSelectOption} />

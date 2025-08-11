@@ -24,11 +24,11 @@ export const MobileView = ({
   const { t } = useTranslation()
   const options = [t('nav.faq'), t('nav.info'), t('nav.contact'), t('nav.projects')]
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[var(--nes-black)] text-[var(--nes-light)] font-vt">
       <motion.div
-        className="min-h-screen bg-gray-900 relative"
+        className="min-h-screen bg-[var(--pane-bg)] relative pixel-border crt"
         style={{
-          boxShadow: selectedOption ? 'none' : `0 0 40px 5px rgba(255, 255, 255, 0.1)`,
+          boxShadow: selectedOption ? 'none' : `0 0 40px 5px rgba(45, 226, 230, 0.15)`,
         }}
       >
         {/* Mobile Header */}
@@ -36,21 +36,21 @@ export const MobileView = ({
           {selectedOption ? (
             <button
               onClick={onGoBack}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+              className="p-2 rounded pixel-border bg-transparent"
             >
-              <ArrowLeft size={20} className="text-white" /> 
+              <ArrowLeft size={20} className="text-[var(--nes-light)]" /> 
             </button>
           ) : (
             <button
               onClick={onToggleMobileNav}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+              className="p-2 rounded pixel-border bg-transparent"
             >
-              <Menu size={20} className="text-white" />
+              <Menu size={20} className="text-[var(--nes-light)]" />
             </button>
           )}
           
           {selectedOption && (
-            <h2 className="text-lg font-bold">{t('content.title', { section: selectedOption })}</h2>
+            <h2 className="text-lg font-pixel">{t('content.title', { section: selectedOption })}</h2>
           )}
           <div></div> {/* Spacer for flex layout */}
         </div>
@@ -104,15 +104,15 @@ export const MobileView = ({
               onClick={onCloseMobileNav}
             >
               <motion.div
-                className="bg-gray-800 rounded-2xl p-8 m-4 max-w-sm w-full"
+                className="bg-[var(--nes-black)] pixel-border rounded-2xl p-8 m-4 max-w-sm w-full"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-xl font-bold mb-6 text-center">{t('mobile.navTitle')}</h3>
+                <h3 className="text-xl font-pixel mb-6 text-center">{t('mobile.navTitle')}</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {options.map((option) => (
                     <motion.button
                       key={option}
-                      className="bg-gray-700 hover:bg-gray-600 rounded-xl p-4 text-center transition-colors duration-200"
+                      className="pixel-border bg-transparent p-4 text-center transition-colors duration-200"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => {
@@ -120,12 +120,12 @@ export const MobileView = ({
                         onCloseMobileNav()
                       }}
                     >
-                      <span className="font-medium">{option}</span>
+                      <span className="font-vt">{option}</span>
                     </motion.button>
                   ))}
                 </div>
                 <button
-                  className="w-full mt-6 p-3 bg-white/10 rounded-xl text-gray-400"
+                  className="w-full mt-6 p-3 pixel-border text-[var(--nes-light)]"
                   onClick={onCloseMobileNav}
                 >
                   {t('mobile.close')}

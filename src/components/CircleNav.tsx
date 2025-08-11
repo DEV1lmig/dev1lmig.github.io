@@ -6,26 +6,60 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
   const { t } = useTranslation()
   const options = [t('nav.faq'), t('nav.info'), t('nav.contact'), t('nav.projects')]
   const [rotation, setRotation] = useState(0)
+  // Keep a ref in sync with rotation to avoid stale values inside stable callbacks
+  const rotationRef = useRef(0)
+  useEffect(() => { rotationRef.current = rotation }, [rotation])
+
   const circleRef = useRef<HTMLDivElement>(null)
   const touchStartRef = useRef<{ y: number; rotation: number }>({ y: 0, rotation: 0 })
   const isDraggingRef = useRef(false)
+  // Timeout used to detect end of wheel momentum and then snap
+  const wheelEndTimeoutRef = useRef<number | null>(null)
+
+  // Normalize wheel delta across devices (pixels/lines/pages)
+  const normalizeWheelDelta = (e: WheelEvent) => {
+    let delta = e.deltaY
+    if (e.deltaMode === 1) {
+      // DOM_DELTA_LINE ~ 16px per line
+      delta *= 16
+    } else if (e.deltaMode === 2) {
+      // DOM_DELTA_PAGE ~ viewport height
+      delta *= window.innerHeight
+    }
+    return delta
+  }
 
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault()
-    const sensitivity = 0.5
-    const newRotation = rotation + e.deltaY * sensitivity
-    const snappedRotation = Math.round(newRotation / 90) * 90
-    setRotation(snappedRotation % 360)
-  }, [rotation])
+    const raw = normalizeWheelDelta(e)
+    // Clamp extremes to avoid erratic jumps on high-sensitivity trackpads
+    const clamped = Math.max(-60, Math.min(60, raw))
+    const sensitivity = 0.25
+
+    const newRotation = rotationRef.current + clamped * sensitivity
+    // Keep rotation within [0, 360)
+    const wrapped = ((newRotation % 360) + 360) % 360
+    setRotation(wrapped)
+
+    // Debounce snapping until scrolling settles
+    if (wheelEndTimeoutRef.current) {
+      window.clearTimeout(wheelEndTimeoutRef.current)
+    }
+    wheelEndTimeoutRef.current = window.setTimeout(() => {
+      const snapped = Math.round(rotationRef.current / 90) * 90
+      const wrappedSnap = ((snapped % 360) + 360) % 360
+      setRotation(wrappedSnap)
+    }, 140)
+  }, [])
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
     e.preventDefault() // Prevent page scrolling
     touchStartRef.current = {
       y: e.touches[0].clientY,
-      rotation: rotation
+      rotation: rotationRef.current
     }
     isDraggingRef.current = true
-  }, [rotation])
+  }, [])
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!isDraggingRef.current) return
@@ -36,7 +70,8 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
     const newRotation = touchStartRef.current.rotation + touchDelta * sensitivity
     
     // Apply rotation without snapping during drag
-    setRotation(newRotation % 360)
+    const wrapped = ((newRotation % 360) + 360) % 360
+    setRotation(wrapped)
   }, [])
 
   const handleTouchEnd = useCallback(() => {
@@ -44,9 +79,10 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
     isDraggingRef.current = false
     
     // Snap to nearest 90-degree position on touch end
-    const snappedRotation = Math.round(rotation / 90) * 90
-    setRotation(snappedRotation % 360)
-  }, [rotation])
+    const snappedRotation = Math.round(rotationRef.current / 90) * 90
+    const wrappedSnap = ((snappedRotation % 360) + 360) % 360
+    setRotation(wrappedSnap)
+  }, [])
 
   useEffect(() => {
     const circle = circleRef.current
@@ -68,6 +104,10 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
         circle.removeEventListener('touchmove', handleTouchMove)
         circle.removeEventListener('touchend', handleTouchEnd)
         circle.removeEventListener('touchcancel', handleTouchEnd)
+      }
+      if (wheelEndTimeoutRef.current) {
+        window.clearTimeout(wheelEndTimeoutRef.current)
+        wheelEndTimeoutRef.current = null
       }
     }
   }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd])
@@ -101,21 +141,18 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
         return (
           <motion.button
             key={option}
-            className={`border-solid absolute w-full z-10 font-bold text-sm sm:text-base md:text-lg lg:text-xl ${isSelected ? 'scale-110' : ''}`}
+            className={`absolute w-full z-10 font-pixel tracking-widest ${isSelected ? 'scale-110 text-[var(--nes-yellow)]' : 'text-[var(--nes-light)]'} text-xs sm:text-sm md:text-base lg:text-lg`}
             style={{
               top: angle === 0 ? '0%' : angle === 180 ? '100%' : '50%',
               left: angle === 90 ? '100%' : angle === 270 ? '0%' : '50%',
               transform: `translate(-50%, -50%)`,
             }}
             onClick={() => onSelect(option)}
-            animate={{ fontSize: isSelected ? '1.35rem' : '1.25rem' }}
             transition={{ duration: 0.3 }}
           >
             <span 
               className='w-full inline-block leading-tight'
-              style={{
-                transform: `rotate(${textRotation}deg)`,
-              }}
+              style={{ transform: `rotate(${textRotation}deg)` }}
             >
               {option}
             </span>
@@ -128,11 +165,10 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
           cy="50"
           r="50"
           fill="none"
-          stroke="white"
-          strokeWidth="0.8"
+          stroke="var(--nes-cyan)"
+          strokeWidth="1"
           strokeDasharray="40 40"
           strokeDashoffset="63"
-          className="sm:stroke-[1] md:stroke-[1.2] lg:stroke-[1.4]"
         />
       </svg>
     </motion.div>

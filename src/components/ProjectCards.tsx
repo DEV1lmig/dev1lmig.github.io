@@ -22,12 +22,12 @@ export const ProjectCards = () => {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-gray-800 rounded-lg overflow-hidden"
-          whileHover={{ scale: 1.05 }}
+          className="bg-[var(--nes-black)] pixel-border rounded-lg overflow-hidden"
+          whileHover={{ scale: 1.03 }}
         >
           <img src={imageMap[project.title] || Thumbnail} alt={project.title} className="w-full h-40 object-cover" />
           <div className="p-4">
-            <h3 className="text-xl font-bold">{project.title}</h3>
+            <h3 className="text-lg font-vt">{project.title}</h3>
           </div>
         </motion.a>
       ))}

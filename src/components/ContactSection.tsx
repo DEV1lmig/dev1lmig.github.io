@@ -12,9 +12,9 @@ export const ContactSection = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800 text-white p-10 rounded-lg shadow-lg w-auto mx-auto"
+      className="bg-[var(--nes-black)] pixel-border text-[var(--nes-light)] p-10 rounded-lg shadow-lg w-auto mx-auto"
     >
-      <h3 className="text-2xl font-bold mb-6">{t('contact.title')}</h3>
+      <h3 className="text-2xl font-pixel mb-6 text-[var(--nes-yellow)]">{t('contact.title')}</h3>
 
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {socialLinks.map((link) => (
@@ -23,7 +23,7 @@ export const ContactSection = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300"
+            className="flex items-center justify-center w-12 h-12 pixel-border rounded bg-transparent hover:shadow-[0_0_10px_2px_rgba(45,226,230,0.35)] transition-colors duration-300"
             aria-label={link.name}
           >
             {link.name.toLowerCase() === 'github' ? (
@@ -40,7 +40,7 @@ export const ContactSection = () => {
       <div className="text-center">
         <a
           href={`mailto:${t('contact.email')}`}
-          className="inline-flex items-center text-lg hover:text-gray-300 transition-colors duration-300"
+          className="inline-flex items-center font-vt hover:text-[var(--nes-yellow)] transition-colors duration-300"
         >
           <Mail size={20} className="mr-2" />
           {t('contact.email')}

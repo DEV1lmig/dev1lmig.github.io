@@ -38,7 +38,7 @@ export const ContentDisplay = ({ selectedOption }: { selectedOption: string }) =
         transition={{ duration: 0.5 }}
         className="h-full"
       >
-        <h2 className="text-2xl font-bold mb-6 border-b border-gray-700 pb-4">{t('content.title', { section: selectedOption })}</h2>
+        <h2 className="text-2xl font-pixel mb-6 border-b border-[var(--nes-cyan)] pb-4 text-[var(--nes-yellow)]">{t('content.title', { section: selectedOption })}</h2>
         <div className="overflow-y-auto pb-4">
           {content}
         </div>

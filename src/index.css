@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Pixel/CRT helpers (no tailwind theme() calls for compatibility) */
+:root {
+  --nes-black: #0f0f1b;
+  --nes-dark: #111827;
+  --nes-gray: #2b2f42;
+  --nes-light: #d7e3fc;
+  --nes-neon: #75f94c;
+  --nes-magenta: #ff3aa7;
+  --nes-cyan: #2de2e6;
+  --nes-yellow: #f5e663;
+  --pane-bg: var(--nes-dark);
+}
+
+@layer utilities {
+  .pixel-border {
+    position: relative;
+    border: 2px solid var(--nes-cyan);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 0 10px 2px rgba(45,226,230,0.12), inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+  .pixel-border::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 2px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .crt {
+    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 100% 2px, 2px 100%;
+    image-rendering: pixelated;
+  }
+  .btn-nes {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: transparent;
+    border: 2px solid var(--nes-neon);
+    color: var(--nes-neon);
+    padding: 0.4rem 0.75rem;
+    transition: all 200ms ease;
+  }
+  .btn-nes:hover { box-shadow: 0 0 8px 2px rgba(255, 58, 167, 0.6), 0 0 20px 6px rgba(45, 226, 230, 0.35); }
+}
