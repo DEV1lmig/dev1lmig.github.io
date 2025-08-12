@@ -1,56 +1,50 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { motion, useMotionValue, animate } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string, onSelect: (option: string) => void }) => {
   const { t } = useTranslation()
-  const options = [t('nav.faq'), t('nav.info'), t('nav.contact'), t('nav.projects')]
+  const options = useMemo(() => [t('nav.faq'), t('nav.info'), t('nav.contact'), t('nav.projects')], [t])
   const [rotation, setRotation] = useState(0)
-  // Keep a ref in sync with rotation to avoid stale values inside stable callbacks
   const rotationRef = useRef(0)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
 
   const circleRef = useRef<HTMLDivElement>(null)
   const touchStartRef = useRef<{ y: number; rotation: number }>({ y: 0, rotation: 0 })
   const isDraggingRef = useRef(false)
-  // Timeout used to detect end of wheel momentum and then snap
-  const wheelEndTimeoutRef = useRef<number | null>(null)
+  // --- Discrete snap-per-gesture scroll logic with cooldown ---
+  const rotationMotion = useMotionValue(rotation)
+  useEffect(() => {
+    const unsub = rotationMotion.on('change', v => {
+      setRotation(v)
+      rotationRef.current = v
+    })
+    return unsub
+  }, [rotationMotion])
 
-  // Normalize wheel delta across devices (pixels/lines/pages)
-  const normalizeWheelDelta = (e: WheelEvent) => {
-    let delta = e.deltaY
-    if (e.deltaMode === 1) {
-      // DOM_DELTA_LINE ~ 16px per line
-      delta *= 16
-    } else if (e.deltaMode === 2) {
-      // DOM_DELTA_PAGE ~ viewport height
-      delta *= window.innerHeight
-    }
-    return delta
-  }
+  const scrollCooldownRef = useRef(false)
+  const SCROLL_COOLDOWN = 250 // ms
 
   const handleWheel = useCallback((e: WheelEvent) => {
+    // Ignore pinch-to-zoom (ctrlKey)
+    if (e.ctrlKey) return
+    // Ignore very small deltas (noise)
+    if (Math.abs(e.deltaX) < 0.5 && Math.abs(e.deltaY) < 0.5) return
+    // Only handle clear two-finger scrolls (vertical or horizontal)
+    if (Math.abs(e.deltaX) > 2 && Math.abs(e.deltaY) > 2) return
+    if (scrollCooldownRef.current) return
     e.preventDefault()
-    const raw = normalizeWheelDelta(e)
-    // Clamp extremes to avoid erratic jumps on high-sensitivity trackpads
-    const clamped = Math.max(-60, Math.min(60, raw))
-    const sensitivity = 0.25
-
-    const newRotation = rotationRef.current + clamped * sensitivity
-    // Keep rotation within [0, 360)
-    const wrapped = ((newRotation % 360) + 360) % 360
-    setRotation(wrapped)
-
-    // Debounce snapping until scrolling settles
-    if (wheelEndTimeoutRef.current) {
-      window.clearTimeout(wheelEndTimeoutRef.current)
-    }
-    wheelEndTimeoutRef.current = window.setTimeout(() => {
-      const snapped = Math.round(rotationRef.current / 90) * 90
-      const wrappedSnap = ((snapped % 360) + 360) % 360
-      setRotation(wrappedSnap)
-    }, 140)
-  }, [])
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+    // Snap to next/prev entry
+    const direction = delta > 0 ? 1 : -1
+    // Only snap if the gesture is strong enough
+    if (Math.abs(delta) < 8) return
+    // Compute new rotation (snap by 90deg)
+    const snapped = Math.round(rotationRef.current / 90) * 90 + direction * 90
+    animate(rotationMotion, snapped, { type: 'spring', stiffness: 160, damping: 18 })
+    scrollCooldownRef.current = true
+    setTimeout(() => { scrollCooldownRef.current = false }, SCROLL_COOLDOWN)
+  }, [rotationMotion])
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
     e.preventDefault() // Prevent page scrolling
@@ -84,6 +78,23 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
     setRotation(wrappedSnap)
   }, [])
 
+  // Memoize the angle for the selected option (so selected is at the left, 270deg)
+  const targetAngle = useMemo(() => {
+    if (!selectedOption) return null
+    const idx = options.indexOf(selectedOption)
+    if (idx === -1) return null
+    // Rotate so selected entry is at 270deg (left)
+    return (90 - idx * 90)
+  }, [selectedOption, options])
+
+  // When selectedOption changes, always rotate so selected is at left (angle 270)
+  useEffect(() => {
+    if (targetAngle == null) return
+    const normalized = ((targetAngle % 360) + 360) % 360
+    setRotation(normalized)
+    rotationRef.current = normalized // keep ref in sync for immediate effect
+  }, [targetAngle])
+
   useEffect(() => {
     const circle = circleRef.current
     if (circle) {
@@ -105,17 +116,13 @@ export const CircleNav = ({ selectedOption, onSelect }: { selectedOption: string
         circle.removeEventListener('touchend', handleTouchEnd)
         circle.removeEventListener('touchcancel', handleTouchEnd)
       }
-      if (wheelEndTimeoutRef.current) {
-        window.clearTimeout(wheelEndTimeoutRef.current)
-        wheelEndTimeoutRef.current = null
-      }
     }
   }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd])
 
   return (
     <motion.div
       ref={circleRef}
-      className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 cursor-pointer touch-none select-none"
+      className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 cursor-pointer touch-none select-none scrollbar-hide"
       style={{ rotate: rotation }}
       animate={{ rotate: rotation }}
       transition={{ 

@@ -45,4 +45,6 @@
     transition: all 200ms ease;
   }
   .btn-nes:hover { box-shadow: 0 0 8px 2px rgba(255, 58, 167, 0.6), 0 0 20px 6px rgba(45, 226, 230, 0.35); }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
