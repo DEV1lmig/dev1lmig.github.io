@@ -1,70 +1,92 @@
 {
-  "name": "Miguel Quiroz",
-  "welcomeWords": ["Welcome", "Bienvenido"],
-  "profile.blurb": "My name is Miguel Quiroz, a Venezuelan front-end developer passionate about creating intuitive and minimalist UIs. Experienced in building complete interfaces, web3 components, AI applications, and e-commerce platforms. Committed to continuous learning and exploring new technologies.",
+  "meta.title": "Miguel Quiroz | Software engineer",
+  "meta.description": "Full-stack engineer building web and mobile products and AI document pipelines. Projects: data2bids, Playchive.",
 
-  "nav.faq": "FAQ",
-  "nav.info": "INFO",
-  "nav.contact": "CONTACT",
-  "nav.projects": "PROJECTS",
+  "skip": "Skip to content",
+  "nav.work": "Work",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+  "nav.lang": "Language",
 
-  "mobile.hint": "Tap the menu ☰ to navigate",
-  "mobile.navTitle": "Navigation",
-  "mobile.close": "Close",
+  "hero.role": "Software engineer",
+  "hero.sub": "Full-stack engineer. I build web and mobile products, and the AI document pipelines behind them.",
+  "hero.cta": "View projects",
+  "hero.github": "GitHub",
+  "hero.now.title": "Shipping now",
+  "hero.now.items": [
+    { "name": "data2bids", "meta": "AI answers from bid documents", "url": "https://www.data2bids.com" },
+    { "name": "Playchive", "meta": "Gaming backlog and library", "url": "https://playchive.vercel.app" }
+  ],
 
-  "content.title": "{{section}}",
+  "work.title": "Work",
 
-  "faq.title": "Frequently Asked Questions",
+  "d2b.name": "data2bids",
+  "d2b.summary": "AI question answering for construction bid teams. It connects to Google Drive, digitizes PDFs, drawings, spreadsheets and photos, and answers with the source file and page.",
+  "d2b.facts": [
+    { "k": "Role", "v": "Full-stack engineer. 1,400+ commits in the codebase." },
+    { "k": "Stack", "v": "Python, FastAPI, React, TanStack Router, Azure (AKS, SQL, Blob, Service Bus), GraphRAG, FAISS" },
+    { "k": "Status", "v": "In production" },
+    { "k": "Code", "v": "Private repository" }
+  ],
+  "d2b.cta": "Open data2bids.com",
+  "d2b.imageAlt": "data2bids home page with the headline AI Answers From Your Bid Data",
+  "d2b.parts": [
+    { "title": "Drive sync", "body": "Read-only Google Drive connection. Teams keep their folders where they are." },
+    { "title": "Document pipeline", "body": "OCR, chunking, embeddings and GraphRAG run in a queue-driven worker on Kubernetes, scaled by queue depth." },
+    { "title": "Cited answers", "body": "Questions in plain language. Every answer points to the file and page it came from." },
+    { "title": "Tenant isolation", "body": "Every query is scoped to a company. An MCP server exposes the same projects to AI assistants over OAuth." }
+  ],
+
+  "pc.name": "Playchive",
+  "pc.summary": "A home for your gaming life. Organize a backlog, track what you play, review it and write about it. The web app and the mobile app share one backend.",
+  "pc.facts": [
+    { "k": "Role", "v": "Product, design and development" },
+    { "k": "Stack", "v": "Next.js 16, React 19, Tailwind 4, Expo, Convex, Clerk" },
+    { "k": "Catalog", "v": "IGDB, with an incremental sync plan that stays inside API and database quotas" },
+    { "k": "Status", "v": "Live" }
+  ],
+  "pc.live": "Open Playchive",
+  "pc.repo": "Source on GitHub",
+  "pc.imageAlt": "Playchive brand board: logo, color palette, typeface and sample library screens",
+
+  "earlier.title": "Earlier work",
+  "earlier.items": [
+    { "title": "Spelly", "kind": "Grammar corrector with ML models", "url": "https://spelly-kit.vercel.app/", "link": "Live site" },
+    { "title": "Mundo Peludo", "kind": "Web design", "url": "https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1", "link": "Figma prototype" },
+    { "title": "Belkys Manga TC LP", "kind": "Landing page design", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1", "link": "Figma prototype" }
+  ],
+
+  "about.title": "About",
+  "about.bio": "Software engineer from Venezuela. I work on both sides of the product: React and React Native interfaces, and the Python and TypeScript services behind them. Lately most of that is AI over documents.",
+  "about.stack.title": "Stack",
+  "about.stack.groups": [
+    { "name": "Interfaces", "items": ["TypeScript", "React", "Next.js", "Svelte", "Tailwind", "Expo"] },
+    { "name": "Services and data", "items": ["Python", "FastAPI", "Node.js", "SQL", "Convex", "Supabase"] },
+    { "name": "Cloud and AI", "items": ["Azure", "Docker", "Kubernetes", "GraphRAG", "MCP", "Git"] }
+  ],
+  "about.experience.title": "Experience",
+  "about.experience.items": [
+    { "role": "Frontend developer", "period": "2023 - 2024", "desc": "Built the dashboard for a web3 startup (unreleased product)." },
+    { "role": "UI and UX designer", "period": "2020 - present", "desc": "Freelance design for apps and websites." }
+  ],
+  "about.education.title": "Education",
+  "about.education.items": [
+    { "title": "Computer Engineering", "place": "Universidad Dr. Rafael Belloso Chacin" }
+  ],
+  "faq.title": "Questions",
   "faq.items": [
-    {
-      "q": "What is your experience in web development?",
-      "a": "I have over 2 years of web development experience, working with technologies like React, Svelte, Next.js, and SQL databases."
-    },
-    {
-      "q": "How do you handle deadlines and communication during a project?",
-      "a": "Communication is key in my projects. I use project management tools to keep clients updated. I set clear milestones and communicate regularly via weekly meetings and email updates."
-    },
-    {
-      "q": "Can you work on long-term projects or do you prefer short contracts?",
-      "a": "I'm flexible and can adapt to both long-term projects and short contracts. My goal is to provide the best value regardless of the project's length."
-    }
+    { "q": "How much experience do you have?", "a": "Three years building web products with React, Svelte, Next.js and SQL databases, now including Python services and cloud deployments." },
+    { "q": "How do you handle deadlines and communication?", "a": "I set clear milestones, keep a written log of changes and update the client weekly by meeting or email." },
+    { "q": "Long projects or short contracts?", "a": "Both. The goal is the same: ship something that works and that the next person can read." }
   ],
 
-  "info.experience.title": "Work Experience",
-  "info.experience.items": [
-    {
-      "role": "Frontend Dev",
-      "period": "2023 - 2024",
-      "desc": "Frontend dev at a web3 startup building the dashboard (unreleased product)"
-    },
-    {
-      "role": "UI-UX Designer",
-      "period": "2020 - Present",
-      "desc": "Designer in various freelance projects, from apps to websites"
-    }
-  ],
-
-  "info.education.title": "Education",
-  "info.education.items": [
-    {
-      "title": "Computer Engineering Student",
-      "period": "Rafael Belloso Chacin, 2020 - Present"
-    }
-  ],
-
-  "info.skills.title": "Skills",
-  "info.skills.items": ["React", "Node.js", "TypeScript", "SQL", "PocketBase", "Supabase", "Svelte"],
-
-  "contact.title": "Let's connect!",
+  "contact.title": "Contact",
+  "contact.cta": "Email me",
   "contact.email": "quirozmiguel2002@gmail.com",
-  "contact.social": [
+  "contact.links": [
     { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/m1guel-quiroz/" },
     { "name": "Instagram", "url": "https://instagram.com/devilmig" }
   ],
-
-  "projects.items": [
-    { "id": 1, "title": "Belkys Manga TC LP", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1" },
-    { "id": 2, "title": "Mundo Peludo", "url": "https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1" },
-    { "id": 3, "title": "Spelly", "url": "https://spelly-kit.vercel.app/" }
-  ]
+  "footer.rights": "Miguel Quiroz, 2026"
 }
