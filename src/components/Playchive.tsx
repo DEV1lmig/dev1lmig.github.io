@@ -31,7 +31,7 @@ export function Playchive() {
             <Ext href="https://playchive.vercel.app" className="btn btn-primary">
               {t('pc.live')} <ArrowUpRight {...ICON} />
             </Ext>
-            <Ext href="https://github.com/DEV1lmig/Binnacle" className="btn btn-ghost">
+            <Ext href="https://github.com/DEV1lmig/Playchive" className="btn btn-ghost">
               {t('pc.repo')} <ArrowUpRight {...ICON} />
             </Ext>
           </div>

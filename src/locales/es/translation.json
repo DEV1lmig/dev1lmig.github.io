@@ -51,8 +51,6 @@
 
   "earlier.title": "Trabajo anterior",
   "earlier.items": [
-    { "title": "Spelly", "kind": "Corrector gramatical con modelos de ML", "url": "https://spelly-kit.vercel.app/", "link": "Sitio en vivo" },
-    { "title": "Mundo Peludo", "kind": "Diseño web", "url": "https://www.figma.com/proto/W5cYFGZfwHrxaOXyw070N2/Mundo-Peludo?node-id=0-1&t=cVx8cLZwPyn95TxW-1", "link": "Prototipo en Figma" },
     { "title": "Belkys Manga TC LP", "kind": "Diseño de landing page", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1", "link": "Prototipo en Figma" }
   ],
 
