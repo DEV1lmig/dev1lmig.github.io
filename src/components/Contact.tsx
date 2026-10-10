@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next'
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { ICON } from '@/components/icon'
-import { Ext, Reveal, SectionTitle } from '@/components/ui'
+import { Ext, Reveal } from '@/components/ui'
 
 type Link = { name: string; url: string }
 
@@ -11,28 +11,31 @@ export function Contact() {
   const email = t('contact.email')
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="border-t border-hazard bg-hazard text-ink">
-      <div className="mx-auto max-w-[1400px] px-4 py-20 md:px-8 md:py-28">
-        <SectionTitle id="contact-title">{t('contact.title')}</SectionTitle>
-        <Reveal>
+    <section id="contact" aria-label={t('contact.label')} className="px-4 pb-6 md:px-6">
+      <Reveal>
+        <div className="row">
+          <h2 className="label m-0">{t('contact.label')}</h2>
           <a
             href={`mailto:${email}`}
-            className="mt-10 block break-all font-display text-[clamp(1.5rem,4.2vw,3.75rem)] uppercase leading-none tracking-tight underline decoration-2 underline-offset-8 hover:bg-ink hover:text-phosphor"
             aria-label={`${t('contact.cta')}: ${email}`}
+            className="wordmark block break-all text-[clamp(1.5rem,4.1vw,4.5rem)] leading-[0.95] hover:underline hover:decoration-2 hover:underline-offset-8"
           >
             {email}
           </a>
-          <ul className="m-0 mt-10 flex list-none flex-wrap gap-x-8 gap-y-3 p-0">
+        </div>
+        <div className="row">
+          <h2 className="label m-0">{t('contact.links.label')}</h2>
+          <ul className="m-0 list-none p-0">
             {links.map((l) => (
               <li key={l.name}>
-                <Ext href={l.url} className="micro inline-flex items-center gap-1.5 border-b border-ink font-medium hover:bg-ink hover:text-phosphor">
+                <Ext href={l.url} className="link inline-flex items-center gap-1.5 py-1">
                   {l.name} <ArrowUpRight {...ICON} />
                 </Ext>
               </li>
             ))}
           </ul>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
     </section>
   )
 }

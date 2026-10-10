@@ -3,88 +3,111 @@
   "meta.description": "Full-stack engineer building web and mobile products and AI document pipelines. Projects: data2bids, Playchive.",
 
   "skip": "Skip to content",
+  "nav.home": "Home",
   "nav.work": "Work",
   "nav.about": "About",
   "nav.contact": "Contact",
+  "nav.theme": "Theme",
   "nav.lang": "Language",
 
-  "hero.role": "Software engineer",
-  "hero.sub": "Full-stack engineer. I build web and mobile products, and the AI document pipelines behind them.",
-  "hero.cta": "View projects",
-  "hero.github": "GitHub",
-  "hero.now.title": "Shipping now",
+  "hero.statement": "Is a full-stack engineer building web and mobile products, and the AI document pipelines behind them.",
+  "hero.role.label": "Role",
+  "hero.role.value": "Software engineer",
+  "hero.now.label": "Now",
   "hero.now.items": [
-    { "name": "data2bids", "meta": "AI answers from bid documents", "url": "https://www.data2bids.com" },
-    { "name": "Playchive", "meta": "Gaming backlog and library", "url": "https://playchive.vercel.app" }
+    { "name": "data2bids", "url": "https://www.data2bids.com" },
+    { "name": "Playchive", "url": "https://playchive.vercel.app" }
+  ],
+  "hero.elsewhere.label": "Elsewhere",
+  "hero.elsewhere.items": [
+    { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/m1guel-quiroz/" }
   ],
 
-  "work.title": "Work",
-
-  "d2b.name": "data2bids",
-  "d2b.summary": "AI question answering for construction bid teams. It connects to Google Drive, digitizes PDFs, drawings, spreadsheets and photos, and answers with the source file and page.",
-  "d2b.facts": [
-    { "k": "Role", "v": "Full-stack engineer. 1,400+ commits in the codebase." },
-    { "k": "Stack", "v": "Python, FastAPI, React, TanStack Router, Azure (AKS, SQL, Blob, Service Bus), GraphRAG, FAISS" },
-    { "k": "Status", "v": "In production" },
-    { "k": "Code", "v": "Private repository" }
+  "work.label": "Work",
+  "projects.items": [
+    {
+      "id": "data2bids",
+      "name": "data2bids",
+      "summary": "AI question answering for construction bid teams. It connects to Google Drive, digitizes PDFs, drawings, spreadsheets and photos, and answers with the source file and page.",
+      "facts": [
+        { "k": "Role", "v": "Full-stack engineer, 1,400+ commits" },
+        { "k": "Stack", "v": "Python, FastAPI, React, Azure, GraphRAG" },
+        { "k": "Status", "v": "In production. Private repository." }
+      ],
+      "links": [{ "label": "View project", "url": "https://www.data2bids.com" }],
+      "highlightsLabel": "How it works",
+      "highlights": [
+        { "title": "Drive sync", "body": "Read-only Google Drive connection. Teams keep their folders where they are." },
+        { "title": "Document pipeline", "body": "OCR, chunking, embeddings and GraphRAG run in a queue-driven worker on Kubernetes, scaled by queue depth." },
+        { "title": "Cited answers", "body": "Questions in plain language. Every answer points to the file and page it came from, and every query is scoped to one company." },
+        { "title": "Claude and ChatGPT", "body": "A custom MCP server lets both assistants query a project over OAuth and answer inside the chat." }
+      ],
+      "images": [
+        "Title card from the data2bids product demo: Process every bid. Instantly.",
+        "Connect Google Drive screen with read-only access",
+        "Claude connected to the project through the custom MCP server",
+        "A cited answer about a bid deadline inside ChatGPT"
+      ]
+    },
+    {
+      "id": "playchive",
+      "name": "Playchive",
+      "summary": "A home for your gaming life. Organize a backlog, track what you play, review it and write about it. The web and mobile apps share one backend, and the catalog comes from IGDB.",
+      "facts": [
+        { "k": "Role", "v": "Product, design and development" },
+        { "k": "Stack", "v": "Next.js, Expo, Convex, Clerk" },
+        { "k": "Status", "v": "Live" }
+      ],
+      "links": [
+        { "label": "View project", "url": "https://playchive.vercel.app" },
+        { "label": "Source", "url": "https://github.com/DEV1lmig/Playchive" }
+      ],
+      "images": [
+        "Playchive brand board with logo, colors, typeface and sample screens",
+        "Playchive landing page: Your games. Your story."
+      ]
+    }
   ],
-  "d2b.cta": "Open data2bids.com",
-  "d2b.imageAlt": "data2bids home page with the headline AI Answers From Your Bid Data",
-  "d2b.parts": [
-    { "title": "Drive sync", "body": "Read-only Google Drive connection. Teams keep their folders where they are." },
-    { "title": "Document pipeline", "body": "OCR, chunking, embeddings and GraphRAG run in a queue-driven worker on Kubernetes, scaled by queue depth." },
-    { "title": "Cited answers", "body": "Questions in plain language. Every answer points to the file and page it came from." },
-    { "title": "Tenant isolation", "body": "Every query is scoped to a company. An MCP server exposes the same projects to AI assistants over OAuth." }
-  ],
 
-  "pc.name": "Playchive",
-  "pc.summary": "A home for your gaming life. Organize a backlog, track what you play, review it and write about it. The web app and the mobile app share one backend.",
-  "pc.facts": [
-    { "k": "Role", "v": "Product, design and development" },
-    { "k": "Stack", "v": "Next.js 16, React 19, Tailwind 4, Expo, Convex, Clerk" },
-    { "k": "Catalog", "v": "IGDB, with an incremental sync plan that stays inside API and database quotas" },
-    { "k": "Status", "v": "Live" }
-  ],
-  "pc.live": "Open Playchive",
-  "pc.repo": "Source on GitHub",
-  "pc.imageAlt": "Playchive brand board: logo, color palette, typeface and sample library screens",
-
-  "earlier.title": "Earlier work",
+  "earlier.label": "Earlier work",
   "earlier.items": [
     { "title": "Belkys Manga TC LP", "kind": "Landing page design", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1", "link": "Figma prototype" }
   ],
 
-  "about.title": "About",
+  "about.label": "About",
   "about.bio": "Software engineer from Venezuela. I work on both sides of the product: React and React Native interfaces, and the Python and TypeScript services behind them. Lately most of that is AI over documents.",
-  "about.stack.title": "Stack",
+  "about.stack.label": "Capabilities",
   "about.stack.groups": [
     { "name": "Interfaces", "items": ["TypeScript", "React", "Next.js", "Svelte", "Tailwind", "Expo"] },
     { "name": "Services and data", "items": ["Python", "FastAPI", "Node.js", "SQL", "Convex", "Supabase"] },
     { "name": "Cloud and AI", "items": ["Azure", "Docker", "Kubernetes", "GraphRAG", "MCP", "Git"] }
   ],
-  "about.experience.title": "Experience",
+  "about.experience.label": "Experience",
   "about.experience.items": [
     { "role": "Frontend developer", "period": "2023 - 2024", "desc": "Built the dashboard for a web3 startup (unreleased product)." },
     { "role": "UI and UX designer", "period": "2020 - present", "desc": "Freelance design for apps and websites." }
   ],
-  "about.education.title": "Education",
+  "about.education.label": "Education",
   "about.education.items": [
     { "title": "Computer Engineering", "place": "Universidad Dr. Rafael Belloso Chacin" }
   ],
-  "faq.title": "Questions",
+  "faq.label": "Questions",
   "faq.items": [
     { "q": "How much experience do you have?", "a": "Three years building web products with React, Svelte, Next.js and SQL databases, now including Python services and cloud deployments." },
     { "q": "How do you handle deadlines and communication?", "a": "I set clear milestones, keep a written log of changes and update the client weekly by meeting or email." },
     { "q": "Long projects or short contracts?", "a": "Both. The goal is the same: ship something that works and that the next person can read." }
   ],
 
-  "contact.title": "Contact",
+  "contact.label": "Contact",
   "contact.cta": "Email me",
   "contact.email": "quirozmiguel2002@gmail.com",
+  "contact.links.label": "Quick links",
   "contact.links": [
     { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
     { "name": "LinkedIn", "url": "https://www.linkedin.com/in/m1guel-quiroz/" },
     { "name": "Instagram", "url": "https://instagram.com/devilmig" }
   ],
-  "footer.rights": "Miguel Quiroz, 2026"
+  "footer.rights": "Miguel Quiroz, 2026",
+  "footer.top": "Back to top"
 }

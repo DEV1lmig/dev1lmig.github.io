@@ -3,88 +3,111 @@
   "meta.description": "Ingeniero full-stack. Construyo productos web y móviles y pipelines de IA para documentos. Proyectos: data2bids, Playchive.",
 
   "skip": "Saltar al contenido",
+  "nav.home": "Inicio",
   "nav.work": "Trabajo",
   "nav.about": "Sobre mí",
   "nav.contact": "Contacto",
+  "nav.theme": "Tema",
   "nav.lang": "Idioma",
 
-  "hero.role": "Ingeniero de software",
-  "hero.sub": "Ingeniero full-stack. Construyo productos web y móviles, y los pipelines de IA para documentos que los sostienen.",
-  "hero.cta": "Ver proyectos",
-  "hero.github": "GitHub",
-  "hero.now.title": "En producción",
+  "hero.statement": "Es un ingeniero full-stack que construye productos web y móviles, y los pipelines de IA para documentos que los sostienen.",
+  "hero.role.label": "Rol",
+  "hero.role.value": "Ingeniero de software",
+  "hero.now.label": "Ahora",
   "hero.now.items": [
-    { "name": "data2bids", "meta": "Respuestas con IA sobre documentos de licitación", "url": "https://www.data2bids.com" },
-    { "name": "Playchive", "meta": "Biblioteca y backlog de videojuegos", "url": "https://playchive.vercel.app" }
+    { "name": "data2bids", "url": "https://www.data2bids.com" },
+    { "name": "Playchive", "url": "https://playchive.vercel.app" }
+  ],
+  "hero.elsewhere.label": "En otros sitios",
+  "hero.elsewhere.items": [
+    { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/m1guel-quiroz/" }
   ],
 
-  "work.title": "Trabajo",
-
-  "d2b.name": "data2bids",
-  "d2b.summary": "Preguntas y respuestas con IA para equipos de licitación en construcción. Se conecta a Google Drive, digitaliza PDFs, planos, hojas de cálculo y fotos, y responde con el archivo y la página de origen.",
-  "d2b.facts": [
-    { "k": "Rol", "v": "Ingeniero full-stack. Más de 1.400 commits en el código." },
-    { "k": "Stack", "v": "Python, FastAPI, React, TanStack Router, Azure (AKS, SQL, Blob, Service Bus), GraphRAG, FAISS" },
-    { "k": "Estado", "v": "En producción" },
-    { "k": "Código", "v": "Repositorio privado" }
+  "work.label": "Trabajo",
+  "projects.items": [
+    {
+      "id": "data2bids",
+      "name": "data2bids",
+      "summary": "Preguntas y respuestas con IA para equipos de licitación en construcción. Se conecta a Google Drive, digitaliza PDFs, planos, hojas de cálculo y fotos, y responde con el archivo y la página de origen.",
+      "facts": [
+        { "k": "Rol", "v": "Ingeniero full-stack, más de 1.400 commits" },
+        { "k": "Stack", "v": "Python, FastAPI, React, Azure, GraphRAG" },
+        { "k": "Estado", "v": "En producción. Repositorio privado." }
+      ],
+      "links": [{ "label": "Ver proyecto", "url": "https://www.data2bids.com" }],
+      "highlightsLabel": "Cómo funciona",
+      "highlights": [
+        { "title": "Sincronización con Drive", "body": "Conexión de solo lectura a Google Drive. Los equipos dejan sus carpetas donde están." },
+        { "title": "Pipeline de documentos", "body": "OCR, fragmentación, embeddings y GraphRAG corren en un worker por cola sobre Kubernetes, escalado según la cola." },
+        { "title": "Respuestas con cita", "body": "Preguntas en lenguaje natural. Cada respuesta apunta al archivo y la página de origen, y cada consulta se filtra por empresa." },
+        { "title": "Claude y ChatGPT", "body": "Un servidor MCP propio permite que ambos asistentes consulten un proyecto con OAuth y respondan dentro del chat." }
+      ],
+      "images": [
+        "Pantalla de título del demo de data2bids: Process every bid. Instantly.",
+        "Pantalla para conectar Google Drive con acceso de solo lectura",
+        "Claude conectado al proyecto mediante el servidor MCP propio",
+        "Una respuesta con cita sobre la fecha límite de una licitación dentro de ChatGPT"
+      ]
+    },
+    {
+      "id": "playchive",
+      "name": "Playchive",
+      "summary": "Un hogar para tu vida gamer. Organiza tu backlog, registra lo que juegas, reseñalo y escribe sobre ello. La web y la app móvil comparten un solo backend, y el catálogo viene de IGDB.",
+      "facts": [
+        { "k": "Rol", "v": "Producto, diseño y desarrollo" },
+        { "k": "Stack", "v": "Next.js, Expo, Convex, Clerk" },
+        { "k": "Estado", "v": "En línea" }
+      ],
+      "links": [
+        { "label": "Ver proyecto", "url": "https://playchive.vercel.app" },
+        { "label": "Código", "url": "https://github.com/DEV1lmig/Playchive" }
+      ],
+      "images": [
+        "Tablero de marca de Playchive con logo, colores, tipografía y pantallas de ejemplo",
+        "Landing de Playchive: Your games. Your story."
+      ]
+    }
   ],
-  "d2b.cta": "Abrir data2bids.com",
-  "d2b.imageAlt": "Página de inicio de data2bids con el titular AI Answers From Your Bid Data",
-  "d2b.parts": [
-    { "title": "Sincronización con Drive", "body": "Conexión de solo lectura a Google Drive. Los equipos dejan sus carpetas donde están." },
-    { "title": "Pipeline de documentos", "body": "OCR, fragmentación, embeddings y GraphRAG corren en un worker por cola sobre Kubernetes, escalado según la cola." },
-    { "title": "Respuestas con cita", "body": "Preguntas en lenguaje natural. Cada respuesta apunta al archivo y la página de origen." },
-    { "title": "Aislamiento por empresa", "body": "Cada consulta se filtra por empresa. Un servidor MCP expone los mismos proyectos a asistentes de IA con OAuth." }
-  ],
 
-  "pc.name": "Playchive",
-  "pc.summary": "Un hogar para tu vida gamer. Organiza tu backlog, registra lo que juegas, reseñalo y escribe sobre ello. La web y la app móvil comparten un solo backend.",
-  "pc.facts": [
-    { "k": "Rol", "v": "Producto, diseño y desarrollo" },
-    { "k": "Stack", "v": "Next.js 16, React 19, Tailwind 4, Expo, Convex, Clerk" },
-    { "k": "Catálogo", "v": "IGDB, con un plan de sincronización incremental que respeta las cuotas de API y base de datos" },
-    { "k": "Estado", "v": "En línea" }
-  ],
-  "pc.live": "Abrir Playchive",
-  "pc.repo": "Código en GitHub",
-  "pc.imageAlt": "Tablero de marca de Playchive: logo, paleta, tipografía y pantallas de ejemplo de la biblioteca",
-
-  "earlier.title": "Trabajo anterior",
+  "earlier.label": "Trabajo anterior",
   "earlier.items": [
     { "title": "Belkys Manga TC LP", "kind": "Diseño de landing page", "url": "https://www.figma.com/proto/bTi2nZ1hbUBlr3ewPDtBpH/peluqueria?node-id=0-1&t=xm5LFdHB6M2HMqxW-1", "link": "Prototipo en Figma" }
   ],
 
-  "about.title": "Sobre mí",
+  "about.label": "Sobre mí",
   "about.bio": "Ingeniero de software venezolano. Trabajo en los dos lados del producto: interfaces en React y React Native, y los servicios en Python y TypeScript que las sostienen. Últimamente, casi todo es IA sobre documentos.",
-  "about.stack.title": "Stack",
+  "about.stack.label": "Capacidades",
   "about.stack.groups": [
     { "name": "Interfaces", "items": ["TypeScript", "React", "Next.js", "Svelte", "Tailwind", "Expo"] },
     { "name": "Servicios y datos", "items": ["Python", "FastAPI", "Node.js", "SQL", "Convex", "Supabase"] },
     { "name": "Nube e IA", "items": ["Azure", "Docker", "Kubernetes", "GraphRAG", "MCP", "Git"] }
   ],
-  "about.experience.title": "Experiencia",
+  "about.experience.label": "Experiencia",
   "about.experience.items": [
     { "role": "Desarrollador frontend", "period": "2023 - 2024", "desc": "Construí el dashboard de una startup web3 (producto sin lanzar)." },
     { "role": "Diseñador UI y UX", "period": "2020 - presente", "desc": "Diseño freelance de apps y sitios web." }
   ],
-  "about.education.title": "Educación",
+  "about.education.label": "Educación",
   "about.education.items": [
     { "title": "Ingeniería en Computación", "place": "Universidad Dr. Rafael Belloso Chacín" }
   ],
-  "faq.title": "Preguntas",
+  "faq.label": "Preguntas",
   "faq.items": [
     { "q": "¿Cuánta experiencia tienes?", "a": "Tres años construyendo productos web con React, Svelte, Next.js y bases SQL, y ahora también servicios en Python y despliegues en la nube." },
     { "q": "¿Cómo manejas los plazos y la comunicación?", "a": "Defino hitos claros, llevo un registro escrito de los cambios y actualizo al cliente cada semana por reunión o correo." },
     { "q": "¿Proyectos largos o contratos cortos?", "a": "Ambos. El objetivo es el mismo: entregar algo que funcione y que la siguiente persona pueda leer." }
   ],
 
-  "contact.title": "Contacto",
+  "contact.label": "Contacto",
   "contact.cta": "Escríbeme",
   "contact.email": "quirozmiguel2002@gmail.com",
+  "contact.links.label": "Enlaces",
   "contact.links": [
     { "name": "GitHub", "url": "https://github.com/DEV1lmig" },
     { "name": "LinkedIn", "url": "https://www.linkedin.com/in/m1guel-quiroz/" },
     { "name": "Instagram", "url": "https://instagram.com/devilmig" }
   ],
-  "footer.rights": "Miguel Quiroz, 2026"
+  "footer.rights": "Miguel Quiroz, 2026",
+  "footer.top": "Volver arriba"
 }

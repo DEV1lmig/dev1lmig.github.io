@@ -1,15 +1,13 @@
 import { useEffect } from 'react'
+import { ArrowUp } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { About } from '@/components/About'
 import { Contact } from '@/components/Contact'
-import { Data2Bids } from '@/components/Data2Bids'
 import { Earlier } from '@/components/Earlier'
-import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
-import { Playchive } from '@/components/Playchive'
-import { ArrowUp } from 'lucide-react'
 import { ICON } from '@/components/icon'
-import { SectionTitle } from '@/components/ui'
+import { Nav } from '@/components/Nav'
+import { Work } from '@/components/Work'
 
 export default function App() {
   const { t, i18n } = useTranslation()
@@ -24,33 +22,26 @@ export default function App() {
     <>
       <a
         href="#work"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-hazard focus:px-4 focus:py-2 focus:text-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-fg focus:px-3 focus:py-2 focus:text-bg"
       >
         {t('skip')}
       </a>
-      <Header />
+      <Nav />
       <main>
         <Hero />
-        <section id="work" aria-labelledby="work-title" className="border-t border-line">
-          <div className="mx-auto flex max-w-[1400px] flex-col gap-20 px-4 py-20 md:gap-28 md:px-8 md:py-28">
-            <SectionTitle id="work-title">{t('work.title')}</SectionTitle>
-            <Data2Bids />
-            <Playchive />
-            <Earlier />
-          </div>
-        </section>
+        <Work />
+        <Earlier />
         <About />
         <Contact />
       </main>
-      <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-6 md:px-8">
-          <p className="micro m-0 text-mute">&copy; {t('footer.rights')}</p>
-          <a href="#top" className="micro inline-flex items-center gap-1.5 hover:text-hazard">
-            <ArrowUp {...ICON} /> Top
+      <footer className="px-4 pb-6 md:px-6">
+        <div className="flex items-center justify-between border-t border-fg/15 pt-4">
+          <p className="label m-0 text-fg/60">&copy; {t('footer.rights')}</p>
+          <a href="#top" className="label link inline-flex items-center gap-1.5 py-1">
+            <ArrowUp {...ICON} /> {t('footer.top')}
           </a>
         </div>
       </footer>
-      <div className="overlay" aria-hidden="true" />
     </>
   )
 }
