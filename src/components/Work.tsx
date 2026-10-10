@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Project, type Media, type ProjectData } from '@/components/Project'
 import d2bPoster from '@/assets/work/d2b-poster.webp'
-import d2bAnswer from '@/assets/work/d2b-4.webp'
+import d2bHero from '@/assets/work/d2b-hero.webp'
 import pcPoster from '@/assets/work/pc-poster.webp'
 import pcBoard from '@/assets/work/pc-board.webp'
 
@@ -11,7 +11,7 @@ const video = (name: string) => `${import.meta.env.BASE_URL}media/${name}`
 const MEDIA: Record<string, Media[]> = {
   data2bids: [
     { kind: 'video', src: video('data2bids'), poster: d2bPoster, w: 1280, h: 720 },
-    { kind: 'image', src: d2bAnswer, w: 1600, h: 900 },
+    { kind: 'image', src: d2bHero, w: 1600, h: 920 },
   ],
   playchive: [
     { kind: 'video', src: video('playchive'), poster: pcPoster, w: 1280, h: 800 },
