@@ -16,7 +16,7 @@ export function About() {
   const faq = t('faq.items', { returnObjects: true }) as Qa[]
 
   return (
-    <section id="about" aria-label={t('about.label')} className="px-4 pb-24 md:px-6">
+    <section id="about" aria-label={t('about.label')} className="px-4 pb-16 md:px-6">
       <Reveal>
         <div className="row">
           <h2 className="label m-0">{t('about.label')}</h2>

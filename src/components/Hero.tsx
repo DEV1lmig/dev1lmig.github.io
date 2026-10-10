@@ -19,7 +19,7 @@ export function Hero() {
   })
 
   return (
-    <section id="top" className="flex min-h-[100dvh] flex-col justify-between px-4 pb-6 pt-24 md:px-6 md:pt-4">
+    <section id="top" className="px-4 pb-16 pt-24 md:px-6 md:pb-20 md:pt-4">
       <div>
         {/* Sized against this container (cqw), not the window: 100vw includes the scrollbar. */}
         <div className="[container-type:inline-size] md:mr-[6.5rem]">
@@ -41,7 +41,7 @@ export function Hero() {
         </p>
       </div>
 
-      <div className="mt-24 grid grid-cols-1 gap-x-6 gap-y-6 border-t border-fg/15 pt-4 md:grid-cols-12">
+      <div className="mt-14 grid grid-cols-1 md:mt-20 gap-x-6 gap-y-6 border-t border-fg/15 pt-4 md:grid-cols-12">
         <div className="md:col-span-4">
           <p className="label m-0 mb-1 text-fg/60">{t('hero.role.label')}</p>
           <p className="m-0">{t('hero.role.value')}</p>

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 type RevealProps = { children: ReactNode; delay?: number; className?: string }
@@ -47,5 +47,48 @@ export function Facts({ items }: { items: Fact[] }) {
         </div>
       ))}
     </dl>
+  )
+}
+
+type AutoVideoProps = { src: string; poster: string; label: string; width: number; height: number }
+
+/** Muted looping clip: plays only while visible; shows native controls under reduced motion or blocked autoplay. */
+export function AutoVideo({ src, poster, label, width, height }: AutoVideoProps) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const reduce = useReducedMotion()
+  const [blocked, setBlocked] = useState(false)
+
+  useEffect(() => {
+    const v = ref.current
+    if (!v || reduce) return
+    v.muted = true
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => setBlocked(true))
+        else v.pause()
+      },
+      { threshold: 0.35 },
+    )
+    io.observe(v)
+    return () => io.disconnect()
+  }, [reduce])
+
+  return (
+    <video
+      ref={ref}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      poster={poster}
+      controls={Boolean(reduce) || blocked}
+      aria-label={label}
+      width={width}
+      height={height}
+      className="block h-auto w-full"
+    >
+      <source src={`${src}.mp4`} type="video/mp4" />
+      <source src={`${src}.webm`} type="video/webm" />
+    </video>
   )
 }

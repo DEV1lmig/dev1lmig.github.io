@@ -1,22 +1,21 @@
 import { useTranslation } from 'react-i18next'
 import { Project, type Media, type ProjectData } from '@/components/Project'
-import d2b1 from '@/assets/work/d2b-1.webp'
-import d2b2 from '@/assets/work/d2b-2.webp'
-import d2b3 from '@/assets/work/d2b-3.webp'
-import d2b4 from '@/assets/work/d2b-4.webp'
+import d2bPoster from '@/assets/work/d2b-poster.webp'
+import d2bAnswer from '@/assets/work/d2b-4.webp'
+import pcPoster from '@/assets/work/pc-poster.webp'
 import pcBoard from '@/assets/work/pc-board.webp'
-import pcSite from '@/assets/work/pc-site.webp'
+
+/** Base path without extension: the player offers .mp4 and .webm. */
+const video = (name: string) => `${import.meta.env.BASE_URL}media/${name}`
 
 const MEDIA: Record<string, Media[]> = {
   data2bids: [
-    { src: d2b1, w: 1600, h: 900, span: 'full' },
-    { src: d2b2, w: 1600, h: 900, span: 'full' },
-    { src: d2b3, w: 1600, h: 900, span: 'full' },
-    { src: d2b4, w: 1600, h: 900, span: 'full' },
+    { kind: 'video', src: video('data2bids'), poster: d2bPoster, w: 1280, h: 720 },
+    { kind: 'image', src: d2bAnswer, w: 1600, h: 900 },
   ],
   playchive: [
-    { src: pcBoard, w: 1600, h: 1200, span: 'full' },
-    { src: pcSite, w: 1264, h: 790, span: 'full' },
+    { kind: 'video', src: video('playchive'), poster: pcPoster, w: 1280, h: 800 },
+    { kind: 'image', src: pcBoard, w: 1600, h: 1200 },
   ],
 }
 
@@ -25,7 +24,7 @@ export function Work() {
   const projects = t('projects.items', { returnObjects: true }) as ProjectData[]
 
   return (
-    <section id="work" aria-label={t('work.label')} className="flex flex-col gap-24 px-4 py-24 md:gap-32 md:px-6 md:py-32">
+    <section id="work" aria-label={t('work.label')} className="flex flex-col gap-16 px-4 pb-16 md:gap-24 md:px-6 md:pb-24">
       {projects.map((p) => (
         <Project key={p.id} project={p} media={MEDIA[p.id] ?? []} />
       ))}
