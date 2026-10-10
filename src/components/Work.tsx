@@ -14,7 +14,7 @@ const MEDIA: Record<string, Media[]> = {
     { kind: 'image', src: d2bHero, w: 1600, h: 920 },
   ],
   playchive: [
-    { kind: 'video', src: video('playchive'), poster: pcPoster, w: 1280, h: 800 },
+    { kind: 'video', src: video('playchive'), poster: pcPoster, w: 1600, h: 974 },
     { kind: 'image', src: pcBoard, w: 1600, h: 1200 },
   ],
 }
