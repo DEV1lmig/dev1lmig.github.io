@@ -19,20 +19,23 @@ export function Hero() {
   })
 
   return (
-    <section id="top" className="flex min-h-[100dvh] flex-col justify-between px-4 pb-6 pt-16 md:px-6 md:pt-4">
+    <section id="top" className="flex min-h-[100dvh] flex-col justify-between px-4 pb-6 pt-24 md:px-6 md:pt-4">
       <div>
-        <h1 className="wordmark m-0 text-[19vw] md:text-[8.5vw]" aria-label="Miguel Quiroz">
-          <span className="block overflow-hidden pb-[0.06em] md:mr-[0.22em] md:inline-block" aria-hidden="true">
-            <motion.span className="block" {...rise(0)}>
-              Miguel
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden pb-[0.06em] md:inline-block" aria-hidden="true">
-            <motion.span className="block" {...rise(1)}>
-              Quiroz
-            </motion.span>
-          </span>
-        </h1>
+        {/* Sized against this container (cqw), not the window: 100vw includes the scrollbar. */}
+        <div className="[container-type:inline-size] md:mr-[6.5rem]">
+          <h1 className="wordmark m-0 text-[20cqw] md:text-[9.9cqw]" aria-label="Miguel Quiroz">
+            <span className="block overflow-hidden pb-[0.06em] md:mr-[0.22em] md:inline-block" aria-hidden="true">
+              <motion.span className="block" {...rise(0)}>
+                Miguel
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden pb-[0.06em] md:inline-block" aria-hidden="true">
+              <motion.span className="block" {...rise(1)}>
+                Quiroz
+              </motion.span>
+            </span>
+          </h1>
+        </div>
         <p className="statement mb-0 mt-6 max-w-[32ch] text-[1.125rem] md:ml-[22%] md:max-w-[48ch] md:text-[1.5rem]">
           {t('hero.statement')}
         </p>

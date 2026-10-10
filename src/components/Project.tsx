@@ -21,8 +21,8 @@ export function Project({ project, media }: { project: ProjectData; media: Media
   return (
     <article aria-labelledby={titleId} className="border-t border-fg/15 pt-4">
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
-        <div className="lg:sticky lg:top-6 lg:col-span-5 lg:self-start">
-          <h3 id={titleId} className="wordmark m-0 text-[clamp(2.25rem,4.8vw,5rem)]">
+        <div className="min-w-0 [container-type:inline-size] lg:sticky lg:top-6 lg:col-span-5 lg:self-start">
+          <h3 id={titleId} className="wordmark m-0 [font-size:min(14cqw,5rem)]">
             {project.name}
           </h3>
           <p className="mb-7 mt-6 max-w-[44ch]">{project.summary}</p>
@@ -38,7 +38,7 @@ export function Project({ project, media }: { project: ProjectData; media: Media
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 md:gap-3 lg:col-span-7">
+        <div className="grid min-w-0 grid-cols-2 gap-2 md:gap-3 lg:col-span-7">
           {media.map((m, i) => (
             <Reveal key={m.src} className={m.span === 'full' ? 'col-span-2' : 'col-span-1'}>
               <img

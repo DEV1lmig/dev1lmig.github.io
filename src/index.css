@@ -32,6 +32,7 @@
     font-size: 0.9375rem;
     line-height: 1.45;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
   ::selection {
     background: rgb(var(--fg));
@@ -87,20 +88,17 @@
   /* Row: label on the left, values from the middle, hairline above (Jarcos-style). */
   .row {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
     row-gap: 1rem;
     border-top: 1px solid rgb(var(--fg) / 0.15);
     padding-top: 1rem;
     padding-bottom: 1.5rem;
   }
-  .row > :first-child {
-    grid-column: 1 / -1;
-  }
-  .row > :last-child {
-    grid-column: 1 / -1;
-  }
   @media (min-width: 768px) {
+    .row {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 1.5rem;
+    }
     .row > :first-child {
       grid-column: 1 / span 5;
     }
