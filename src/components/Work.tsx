@@ -24,7 +24,7 @@ export function Work() {
   const projects = t('projects.items', { returnObjects: true }) as ProjectData[]
 
   return (
-    <section id="work" aria-label={t('work.label')} className="flex flex-col gap-16 px-4 pb-16 md:gap-24 md:px-6 md:pb-24">
+    <section id="work" aria-label={t('work.label')} className="flex flex-col gap-16 px-5 pb-16 md:gap-24 md:px-6 md:pb-24">
       {projects.map((p) => (
         <Project key={p.id} project={p} media={MEDIA[p.id] ?? []} />
       ))}

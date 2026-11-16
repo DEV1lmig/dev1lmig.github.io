@@ -16,11 +16,11 @@ export function About() {
   const faq = t('faq.items', { returnObjects: true }) as Qa[]
 
   return (
-    <section id="about" aria-label={t('about.label')} className="px-4 pb-16 md:px-6">
+    <section id="about" aria-label={t('about.label')} className="px-5 pb-16 md:px-6">
       <Reveal>
         <div className="row">
           <h2 className="label m-0">{t('about.label')}</h2>
-          <p className="m-0 max-w-[40ch] text-[1.25rem] leading-snug md:text-[1.5rem]">{t('about.bio')}</p>
+          <p className="m-0 max-w-[40ch] text-[1.1875rem] font-medium leading-snug tracking-[-0.01em] md:text-[1.5rem]">{t('about.bio')}</p>
         </div>
       </Reveal>
 
@@ -82,7 +82,7 @@ export function About() {
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-3 marker:hidden [&::-webkit-details-marker]:hidden">
                   <span className="font-semibold">{item.q}</span>
                   <Plus {...ICON} className="shrink-0 group-open:hidden" />
-                  <Minus {...ICON} className="hidden shrink-0 group-open:block" />
+                  <Minus {...ICON} className="hidden shrink-0 text-signal group-open:block" />
                 </summary>
                 <p className="m-0 max-w-[52ch] pb-4 text-fg/70">{item.a}</p>
               </details>

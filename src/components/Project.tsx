@@ -25,12 +25,12 @@ export function Project({ project, media }: { project: ProjectData; media: Media
     <article aria-labelledby={titleId} className="border-t border-fg/15 pt-4">
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
         <div className="stick min-w-0 [container-type:inline-size] lg:col-span-5">
-          <h3 id={titleId} className="wordmark m-0 [font-size:min(14cqw,5rem)]">
+          <h3 id={titleId} className="wordmark m-0 [font-size:min(15cqw,5rem)]">
             {project.name}
           </h3>
-          <p className="mb-6 mt-5 max-w-[44ch]">{project.summary}</p>
+          <p className="mb-6 mt-5 max-w-[44ch] text-[1.0625rem] leading-relaxed">{project.summary}</p>
           <Facts items={project.facts} />
-          <ul className="label m-0 mt-4 flex list-none flex-wrap gap-x-6 p-0">
+          <ul className="mono m-0 mt-4 flex list-none flex-wrap gap-x-6 p-0">
             {project.links.map((l) => (
               <li key={l.url}>
                 <Ext href={l.url} className="link inline-flex items-center gap-1.5 py-1">
@@ -45,8 +45,8 @@ export function Project({ project, media }: { project: ProjectData; media: Media
               <dl className="m-0 grid gap-3.5 border-t border-fg/15 pt-4">
                 {project.highlights.map((h) => (
                   <div key={h.title}>
-                    <dt className="text-[0.8125rem] font-semibold">{h.title}</dt>
-                    <dd className="m-0 max-w-[46ch] text-[0.8125rem] leading-snug text-fg/70">{h.body}</dd>
+                    <dt className="text-[0.875rem] font-semibold">{h.title}</dt>
+                    <dd className="m-0 max-w-[46ch] text-[0.875rem] leading-snug text-fg/70">{h.body}</dd>
                   </div>
                 ))}
               </dl>
@@ -66,7 +66,7 @@ export function Project({ project, media }: { project: ProjectData; media: Media
                   width={m.w}
                   height={m.h}
                   loading="lazy"
-                  className="block h-auto w-full"
+                  className="block h-auto w-full rounded-media"
                 />
               )}
             </Reveal>
