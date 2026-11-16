@@ -7,6 +7,7 @@ import { Earlier } from '@/components/Earlier'
 import { Hero } from '@/components/Hero'
 import { ICON } from '@/components/icon'
 import { Nav } from '@/components/Nav'
+import { Logo } from '@/components/ui'
 import { Work } from '@/components/Work'
 
 export default function App() {
@@ -26,18 +27,24 @@ export default function App() {
       >
         {t('skip')}
       </a>
-      <Nav />
-      <main>
+      {/* First screen: nav + hero fill the small viewport (toolbar shown), never more. */}
+      <div className="flex min-h-svh flex-col">
+        <Nav />
         <Hero />
+      </div>
+      <main>
         <Work />
         <Earlier />
         <About />
         <Contact />
       </main>
-      <footer className="px-4 pb-6 md:px-6">
-        <div className="flex items-center justify-between border-t border-fg/15 pt-4">
-          <p className="label m-0 text-fg/60">&copy; {t('footer.rights')}</p>
-          <a href="#top" className="label link inline-flex items-center gap-1.5 py-1">
+      <footer className="px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] md:px-6">
+        <div className="flex items-center justify-between gap-4 pt-6">
+          <p className="label m-0 flex items-center gap-3 text-fg/60">
+            <Logo className="text-base normal-case tracking-[-0.05em] text-fg" />
+            &copy; {t('footer.rights')}
+          </p>
+          <a href="#top" className="mono link inline-flex items-center gap-1.5 py-2 text-xs">
             <ArrowUp {...ICON} /> {t('footer.top')}
           </a>
         </div>

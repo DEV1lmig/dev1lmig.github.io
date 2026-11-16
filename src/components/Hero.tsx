@@ -6,6 +6,11 @@ type NamedLink = { name: string; url: string }
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
+/**
+ * Fills what's left of the first screen under the nav (the parent is min-h-svh): the name and
+ * statement sit on top and the info row on the bottom edge, so a phone shows all of it even with
+ * the browser toolbar expanded (svh = the smallest viewport, toolbar visible).
+ */
 export function Hero() {
   const { t } = useTranslation()
   const reduce = useReducedMotion()
@@ -19,29 +24,30 @@ export function Hero() {
   })
 
   return (
-    <section id="top" className="px-4 pb-16 pt-24 md:px-6 md:pb-20 md:pt-4">
+    <section id="top" aria-label="Miguel Quiroz" className="flex flex-1 flex-col justify-between gap-12 px-5 pb-12 pt-6 md:px-6 md:pb-20 md:pt-16">
       <div>
         {/* Sized against this container (cqw), not the window: 100vw includes the scrollbar. */}
-        <div className="[container-type:inline-size] md:mr-[6.5rem]">
-          <h1 className="wordmark m-0 text-[20cqw] md:text-[9.9cqw]" aria-label="Miguel Quiroz">
-            <span className="block overflow-hidden pb-[0.06em] md:mr-[0.22em] md:inline-block" aria-hidden="true">
+        <div className="[container-type:inline-size]">
+          <h1 className="wordmark m-0 text-[25cqw] md:whitespace-nowrap md:text-[14cqw]" aria-label="Miguel Quiroz">
+            {/* The mask clips the rise animation; padding keeps the g's descender inside it. */}
+            <span className="-mb-[0.14em] block overflow-hidden pb-[0.14em] md:mr-[0.25em] md:inline-block" aria-hidden="true">
               <motion.span className="block" {...rise(0)}>
                 Miguel
               </motion.span>
             </span>
-            <span className="block overflow-hidden pb-[0.06em] md:inline-block" aria-hidden="true">
+            <span className="-mb-[0.14em] block overflow-hidden pb-[0.14em] md:inline-block" aria-hidden="true">
               <motion.span className="block" {...rise(1)}>
-                Quiroz
+                Quiroz<span className="cursor">_</span>
               </motion.span>
             </span>
           </h1>
         </div>
-        <p className="statement mb-0 mt-6 max-w-[32ch] text-[1.125rem] md:ml-[22%] md:max-w-[48ch] md:text-[1.5rem]">
+        <p className="statement mb-0 mt-6 max-w-[34ch] text-[1.375rem] md:ml-[42%] md:mt-8 md:max-w-[30ch] md:text-[2rem]">
           {t('hero.statement')}
         </p>
       </div>
 
-      <div className="mt-14 grid grid-cols-1 md:mt-20 gap-x-6 gap-y-6 border-t border-fg/15 pt-4 md:grid-cols-12">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-5 border-t border-fg/15 pt-4 md:grid-cols-12">
         <div className="md:col-span-4">
           <p className="label m-0 mb-1 text-fg/60">{t('hero.role.label')}</p>
           <p className="m-0">{t('hero.role.value')}</p>
